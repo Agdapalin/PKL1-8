@@ -8,9 +8,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $search = $request->input('search');
+
+        // Jika ada pencarian, filter berdasarkan nama atau email
+        $users = User::when($search, function ($query, $search) {
+            return $query->where('name', 'LIKE', "%{$search}%")
+                         ->orWhere('email', 'LIKE', "%{$search}%");
+        })->get();
+
         return view('backend.user.index', compact('users'));
     }
 
@@ -21,8 +28,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-    //   dd($request->all());
-      
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',

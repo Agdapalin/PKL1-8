@@ -15,7 +15,9 @@ class TeacherController extends Controller
         $teachers = DB::table('teacher')
             ->when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%")
-                             ->orWhere('email', 'like', "%{$search}%");
+                             ->orWhere('email', 'like', "%{$search}%")
+                             ->orWhere('addres', 'like', "%{$search}%")
+                             ->orWhere('jabatan', 'like', "%{$search}%");
             })
             ->paginate(3);
 

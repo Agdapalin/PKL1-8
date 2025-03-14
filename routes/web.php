@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\MataPelajaranController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,8 +25,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Rute Student
     Route::get('/student', [StudentController::class, 'index'])->name('student');
-    Route::get('/student/create', [StudentController::class, 'create'])->name('student.create'); // ✅ Tambahkan ini
-    Route::post('/student/store', [StudentController::class, 'store'])->name('student.store'); // ✅ Tambahkan ini
+    Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
+    Route::post('/student/store', [StudentController::class, 'store'])->name('student.store');
     Route::get('/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
     Route::post('/student/update/{id}', [StudentController::class, 'update'])->name('student.update');
     Route::delete('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
@@ -37,6 +38,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::post('/teacher/update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('/teacher/delete/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+
+    // Rute Mata Pelajaran
+    Route::get('/mata_pelajaran', [MataPelajaranController::class, 'index'])->name('mata_pelajaran.index'); // Rute DataTables
+    Route::get('/mata_pelajaran/create', [MataPelajaranController::class, 'create'])->name('mata_pelajaran.create');
+    Route::post('/mata_pelajaran/store', [MataPelajaranController::class, 'store'])->name('mata_pelajaran.store');
+    Route::get('/mata_pelajaran/edit/{id}', [MataPelajaranController::class, 'edit'])->name('mata_pelajaran.edit');
+    Route::post('/mata_pelajaran/update/{id}', [MataPelajaranController::class, 'update'])->name('mata_pelajaran.update');
+    Route::delete('/mata_pelajaran/delete/{id}', [MataPelajaranController::class, 'destroy'])->name('mata_pelajaran.destroy');
 
     // Rute Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

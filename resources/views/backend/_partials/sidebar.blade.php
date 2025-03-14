@@ -53,6 +53,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ route('mata_pelajaran.index') }}">
+                  <i class="fas fa-book"></i>
+                  <p>Mata Pelajaran</p>
+                </a>
+              </li>
+              <li class="nav-item">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Log Out</p>

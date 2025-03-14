@@ -23,8 +23,8 @@
     @endif
 
     <!-- Form Pencarian -->
-    <form action="{{ route('teacher') }}" method="GET" class="mb-3">
-        <div class="input-group">
+    <form action="{{ route('teacher') }}" method="GET" class="mb-3 d-flex justify-content-start">
+        <div class="input-group" style="max-width: 300px;">
             <input type="text" name="search" class="form-control form-control-sm" placeholder="Cari nama atau email..." value="{{ request('search') }}">
             <button type="submit" class="btn btn-primary btn-sm">
                 <i class="fas fa-search"></i> Cari

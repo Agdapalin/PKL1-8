@@ -16,7 +16,7 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -27,7 +27,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">No. Telepon</label>
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
+                                    <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
                                     @if ($errors->has('phone'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('phone') }}</strong>
@@ -49,7 +49,7 @@
                             <div class="form-group row">
                                 <label for="class" class="col-md-4 col-form-label text-md-right">Kelas</label>
                                 <div class="col-md-6">
-                                    <input id="class" type="text" class="form-control{{ $errors->has('class') ? ' is-invalid' : '' }}" name="class" value="{{ old('class') }}" required>
+                                    <input id="class" type="text" class="form-control{{ $errors->has('class') ? ' is-invalid' : '' }}" name="class" value="{{ old('class') }}">
                                     @if ($errors->has('class'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('class') }}</strong>
@@ -60,7 +60,7 @@
                             <div class="form-group row">
                                 <label for="addres" class="col-md-4 col-form-label text-md-right">Alamat</label>
                                 <div class="col-md-6">
-                                    <input id="addres" type="text" class="form-control{{ $errors->has('addres') ? ' is-invalid' : '' }}" name="addres" value="{{ old('addres') }}" required>
+                                    <input id="addres" type="text" class="form-control{{ $errors->has('addres') ? ' is-invalid' : '' }}" name="addres" value="{{ old('addres') }}">
                                     @if ($errors->has('addres'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('addres') }}</strong>
@@ -71,7 +71,7 @@
                             <div class="form-group row">
                                 <label for="gender" class="col-md-4 col-form-label text-md-right">Jenis Kelamin</label>
                                 <div class="col-md-6">
-                                    <select id="gender" name="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" required>
+                                    <select id="gender" name="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}">
                                         <option value="male">Laki-laki</option>
                                         <option value="female">Perempuan</option>
                                     </select>

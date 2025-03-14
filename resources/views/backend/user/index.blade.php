@@ -6,6 +6,10 @@
     <h3 class="fw-bold mb-3">Halaman User</h3>
     <a href="{{ route('user.create') }}" class="btn btn-success mb-3">Tambah User</a>
 
+    <form method="GET" action="{{ route('user') }}" class="mb-3">
+        <input type="text" name="search" class="form-control" placeholder="Cari pengguna..." value="{{ request('search') }}">
+    </form>
+
     @if(session('success'))
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -49,7 +53,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div> <!-- End of table-container -->
+            </div>
         </div>
     </div>
 </div>
@@ -74,22 +78,4 @@
         });
     }
 </script>
-
-<style>
-    .table-container {
-        max-height: 400px; /* Menentukan tinggi maksimal tabel */
-        overflow-y: auto;  /* Mengaktifkan scroll vertikal */
-        display: block;     /* Agar scroll bisa berfungsi */
-        border: 1px solid #ddd; /* Menambahkan batas tabel */
-    }
-
-    .table-container thead {
-        position: sticky;
-        top: 0;
-        background: #343a40;
-        color: white;
-        z-index: 10;
-    }
-</style>
-
 @endsection
