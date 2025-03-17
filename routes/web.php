@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MataPelajaranController;
+use App\Http\Controllers\NilaiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -46,6 +47,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mata_pelajaran/edit/{id}', [MataPelajaranController::class, 'edit'])->name('mata_pelajaran.edit');
     Route::post('/mata_pelajaran/update/{id}', [MataPelajaranController::class, 'update'])->name('mata_pelajaran.update');
     Route::delete('/mata_pelajaran/delete/{id}', [MataPelajaranController::class, 'destroy'])->name('mata_pelajaran.destroy');
+
+    // Rute Nilai
+    Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');
+    Route::get('/nilai/create', [NilaiController::class, 'create'])->name('nilai.create');
+    Route::post('/nilai/store', [NilaiController::class, 'store'])->name('nilai.store');
+    Route::get('/nilai/edit/{id}', [NilaiController::class, 'edit'])->name('nilai.edit');
+    Route::post('/nilai/update/{id}', [NilaiController::class, 'update'])->name('nilai.update');
+    Route::delete('/nilai/{nilai}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
 
     // Rute Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

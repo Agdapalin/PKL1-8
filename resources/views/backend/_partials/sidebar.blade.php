@@ -59,6 +59,13 @@
                 </a>
               </li>
               <li class="nav-item">
+              <li class="nav-item">
+                <a href="{{ route('nilai.index') }}">
+                  <i class="fas fa-chart-line"></i>
+                  <p>Nilai</p>
+                </a>
+              </li>
+              <li class="nav-item">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Log Out</p>
