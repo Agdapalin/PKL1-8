@@ -39,7 +39,7 @@
 
         <!-- Button Redirect -->
         <div class="text-center mt-4">
-            <a href="https://idn00084.tigoals195.com/football.html" class="btn btn-primary btn-lg" target="_blank">
+            <a href="https://idn00084.tigoals198.com/football.html" class="btn btn-primary btn-lg" target="_blank">
                 ⚽ BOLA BROO!!!! ⚽
             </a>
         </div>
