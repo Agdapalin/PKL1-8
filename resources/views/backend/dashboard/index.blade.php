@@ -1,16 +1,17 @@
 @extends('backend.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid dashboard-container">
     <div class="page-inner">
         <h3 class="fw-bold mb-3">Dashboard Overview</h3>
+
+        <!-- Kartu Statistik -->
         <div class="row">
             @php
                 $cards = [
-                    ['title' => 'Visitors', 'count' => '1,294', 'icon' => 'fas fa-users', 'color' => 'primary'],
-                    ['title' => 'Subscribers', 'count' => '1,303', 'icon' => 'fas fa-user-check', 'color' => 'info'],
-                    ['title' => 'Sales', 'count' => '$1,345', 'icon' => 'fas fa-chart-pie', 'color' => 'success'],
-                    ['title' => 'Orders', 'count' => '576', 'icon' => 'far fa-check-circle', 'color' => 'secondary']
+                    ['title' => 'Students', 'count' => $students, 'icon' => 'fas fa-users', 'color' => 'primary'],
+                    ['title' => 'Teachers', 'count' => $teachers, 'icon' => 'fas fa-user-check', 'color' => 'info'],
+                    ['title' => 'Mata Pelajaran', 'count' => $matapelajaran, 'icon' => 'fas fa-book', 'color' => 'warning']
                 ];
             @endphp
 
@@ -37,44 +38,127 @@
             @endforeach
         </div>
 
-        <!-- Button Redirect -->
-        <div class="text-center mt-4">
-            <a href="https://idn00084.tigoals198.com/football.html" class="btn btn-primary btn-lg" target="_blank">
-                ⚽ BOLA BROO!!!! ⚽
-            </a>
+        <!-- Grafik -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="text-center">Data Statistik</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="chartPie"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="text-center">Ranking Nilai</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="chartBar"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 @endsection
 
-<!-- Footer -->
-<footer class="footer bg-light py-2 fixed-bottom border-top">
-    <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
-        <nav>
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/bllrchmn_r">Jarot</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://accounts.google.com">Help</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Licenses</a></li>
-            </ul>
-        </nav>
+<!-- Tambahkan Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <div class="text-center">
-            <small>© 2025, made with ❤️ by <a href="http://www.themekita.com">Jarot</a></small>
-        </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Data untuk Pie Chart
+        var ctxPie = document.getElementById("chartPie");
+        if (ctxPie) {
+            var chartData = {!! json_encode($chartData) !!};
 
-        <div class="text-right">
-            <small>Distributed by <a target="_blank" href="https://themewagon.com/">Jarot</a></small>
-        </div>
-    </div>
-</footer>
+            new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: ['Students', 'Teachers', 'Mata Pelajaran'],
+                    datasets: [{
+                        data: [chartData.students, chartData.teachers, chartData.matapelajaran],
+                        backgroundColor: ['#007bff', '#28a745', '#ffc107'],
+                        borderColor: ['#ffffff', '#ffffff', '#ffffff'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
 
-<!-- CSS -->
+        // Data untuk Bar Chart (Ranking Nilai)
+        var ctxBar = document.getElementById("chartBar");
+        if (ctxBar) {
+            var nilaiRanks = {!! json_encode($nilaiRanks) !!};
+
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['A (85-100)', 'B (70-84)', 'C (55-69)', 'D (40-54)', 'E (<40)'],
+                    datasets: [{
+                        label: 'Jumlah Siswa',
+                        data: [nilaiRanks.A, nilaiRanks.B, nilaiRanks.C, nilaiRanks.D, nilaiRanks.E],
+                        backgroundColor: ['#28a745', '#007bff', '#ffc107', '#fd7e14', '#dc3545'],
+                        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1, // Pastikan angka naik dalam kelipatan 1
+                                precision: 0  // Hapus angka desimal
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+<!-- Tambahkan CSS -->
 <style>
-    .footer {
-        font-size: 12px;
+    html, body {
+        height: 100%;
+        overflow-y: auto;
     }
 
-    .footer .nav-link {
-        padding: 0 8px;
+    .dashboard-container {
+        min-height: 100vh;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    .chart-container {
+        max-height: 400px;
+        overflow-y: auto;
     }
 </style>

@@ -30,7 +30,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="table-container">
+            <div class="table-responsive">  <!-- Tambahkan div ini untuk membuat tabel bisa di-scroll -->
                 <table class="table table-hover">
                     <thead class="table-dark">
                         <tr>
@@ -86,5 +86,16 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Tambahkan CSS -->
+<style>
+    .table-responsive {
+        max-height: 400px; /* Atur tinggi maksimal tabel */
+        overflow-y: auto; /* Aktifkan scroll secara vertikal */
+    }
+    .table th, .table td {
+        white-space: nowrap; /* Mencegah teks dalam sel tabel agar tidak terpotong */
+    }
+</style>
 
 @endsection
